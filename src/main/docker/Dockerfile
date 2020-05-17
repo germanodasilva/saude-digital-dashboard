@@ -16,7 +16,7 @@
 ###
 FROM registry.access.redhat.com/ubi8/ubi-minimal:8.1
 WORKDIR /work/
-COPY target/*-runner.zip /work/application
+COPY target/*-runner /work/application
 
 #
 # set up permissions for user `1001`
