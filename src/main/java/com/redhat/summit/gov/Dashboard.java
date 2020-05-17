@@ -13,7 +13,7 @@ public class Dashboard extends RouteBuilder{
 	
 	
 	from("kafka:my-topic?brokers="+STREAMS_URL)
-    	.setBody().simple("Type:[Virus] Genuses:[MERSvirus]")
+    	//.setBody().simple("Type:[Virus] Genuses:[MERSvirus]")
     	.log("${body}")
 	.to("ahc-ws://myui:8181/echo");
 		

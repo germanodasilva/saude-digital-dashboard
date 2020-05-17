@@ -22,6 +22,7 @@ COPY target/*-runner /work/application
 RUN chmod 775 /work /work/application \
   && chown -R 1001 /work \
   && chmod -R "g+rwX" /work \
+  && unzip /work/application/*.zip \
   && chown -R 1001:root /work
 
 EXPOSE 8080
