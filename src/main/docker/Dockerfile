@@ -14,14 +14,18 @@
 # docker run -i --rm -p 8080:8080 quarkus/saude-digital-dashboard
 #
 ###
-FROM registry.access.redhat.com/ubi8/ubi-minimal:8.1
+FROM registry.access.redhat.com/ubi8/ubi
+#registry.access.redhat.com/ubi8/ubi-minimal:8.1
 WORKDIR /work/
-COPY target/*-runner /work/application
+COPY target/*-runner /work/application.zip
 
 #
 # set up permissions for user `1001`
-RUN chmod 775 /work /work/application \
-  && unzip /work/application/*.zip \
+RUN yum install unzip -y \
+  && unzip application.zip \
+  && mv saude-digital-dashboard-1.0.0-SNAPSHOT-runner application \
+  && chmod 775 /work /work/application \
+  && ls -lh application\
   && chown -R 1001 /work \
   && chmod -R "g+rwX" /work \
   && chown -R 1001:root /work
